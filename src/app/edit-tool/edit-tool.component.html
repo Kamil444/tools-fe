@@ -1,0 +1,29 @@
+<div class="container justify-content-center">    
+    <div class="input-group-prepend">
+        <form class="" [formGroup]= "toolEditForm" (ngSubmit)="addTool()">
+            <label for="name">Name</label>
+            <input id="name" class="form-control mr-sm-2" formControlName="name" placeholder="Name">
+            <label for="quantity">Quantity</label>
+            <input id="quantity" class="form-control mr-sm-2" formControlName="quantity" type="number">
+            <label for="junkQuantity">Junk Quantity</label>
+            <input id="junkQuantity" class="form-control mr-sm-2" formControlName="junkQuantity" type="number">
+            <label for="toolCabinetNumber">Tool Cabinet Number</label>
+            <input id="toolCabinetNumber" class="form-control mr-sm-2" formControlName="toolCabinetNumber" type="number">
+            <label for="toolShelfNumber">Tool Shelf Number</label>
+            <input id="toolShelfNumber" class="form-control mr-sm-2" formControlName="toolShelfNumber" type="number">
+            <label for="toolPosition">Tool Position</label>
+            <input id="toolPosition" class="form-control mr-sm-2" formControlName="toolPosition" type="number">
+            <select class="custom-select" formControlName="typeOfTool" placeholder="Pick">
+                <option *ngFor="let item of toolList | keyvalue" value="{{item.value}}">
+                    {{item.key}}
+                </option>                 
+            </select>                
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add</button>       
+      </form>   
+    </div>
+    <div (click)="back()">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Back</button>
+    </div>
+</div>
+
+

@@ -1,0 +1,67 @@
+
+  <nav class="navbar navbar-dark bg-dark" > 
+    <div class="input-group mb">
+        <div class="input-group-prepend">
+            <form class="form-inline" [formGroup]= "toolSearchForm" (ngSubmit)="search()">
+                <select class="custom-select" formControlName="toolType" placeholder="Pick">                    
+                    <option 
+                      *ngFor="let item of toolList | keyvalue" value="{{item.value}}">{{item.key}}
+                    </option>                    
+                </select>
+                <select class="custom-select" formControlName="limit" placeholder="Pick">
+                    <option *ngFor="let item of listQuantity | keyvalue" value="{{item.value}}">{{item.key}}</option>                    
+                </select>
+                <input class="form-control mr-sm-2" formControlName="name" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>                       
+          </form>   
+          <button class="btn btn-outline-success my-2 my-sm-0" (click)="addTool()" type="button">Add</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" (click)="warehouseRecepit()" type="button">Warehouse Receipt</button>
+        </div>
+    </div>
+  </nav>
+  <div class="container p-2 justify-content-center" *ngIf="(componentData$ | async) as data"> 
+      <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Tool Type</th>
+              <th scope="col">Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data.items; index as i"  (click)="openModal(content,i);">
+              <td>{{i}}</td>
+              <td>{{ item.name | uppercase }}</td>
+              <td>{{ item.typeOfTool  | uppercase}}</td>
+              <td>{{ item.quantity }}</td>
+            </tr>      
+          </tbody>
+        </table>
+  </div>
+  
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title"></h4> 
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')">        
+      </button>
+    </div>
+    <div class="modal-body" [formGroup]="toolUpdate">
+      <form *ngIf="(test) as modalData">
+        <div class="form-group">
+          <table>
+            <tbody>
+              <td *ngFor="let item of modalData | keyvalue;">
+                <tr>{{item.value}}</tr>
+                
+                           
+              </td>
+            </tbody>
+          </table>        
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+  </ng-template>
