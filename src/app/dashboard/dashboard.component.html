@@ -5,11 +5,11 @@
             <form class="form-inline" [formGroup]= "toolSearchForm" (ngSubmit)="search()">
                 <select class="custom-select" formControlName="toolType" placeholder="Pick">                    
                     <option 
-                      *ngFor="let item of toolList | keyvalue" value="{{item.value}}">{{item.key}}
+                      *ngFor="let item of enumToolList | keyvalue" value="{{item.value}}">{{item.key}}
                     </option>                    
                 </select>
                 <select class="custom-select" formControlName="limit" placeholder="Pick">
-                    <option *ngFor="let item of listQuantity | keyvalue" value="{{item.value}}">{{item.key}}</option>                    
+                    <option *ngFor="let item of enumListQuantity | keyvalue" value="{{item.value}}">{{item.key}}</option>                    
                 </select>
                 <input class="form-control mr-sm-2" formControlName="name" placeholder="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>                       
@@ -46,16 +46,19 @@
       <button type="button" class="close" (click)="modal.dismiss('Cross click')">        
       </button>
     </div>
-    <div class="modal-body" [formGroup]="toolUpdate">
-      <form *ngIf="(test) as modalData">
+    <div class="modal-body" [formGroup]="toolUpdate" *ngIf="qqqq as huj">
+      <form >
         <div class="form-group">
           <table>
             <tbody>
-              <td *ngFor="let item of modalData | keyvalue;">
-                <tr>{{item.value}}</tr>
+              <tr>
+                <td>{{huj?.name}}</td>
+                <td>{{huj?.typeOfTool}}</td>
+                <td><input placeholder="{{huj?.quantity}}"></td>
+                <td><input placeholder="{{huj?.junkQuantity}}"></td>
                 
                            
-              </td>
+              </tr>
             </tbody>
           </table>        
         </div>

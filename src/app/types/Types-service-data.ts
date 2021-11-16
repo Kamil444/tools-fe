@@ -9,7 +9,8 @@ export interface Enums {
 export interface ToolData {
     name: string;
     typeOfTool: ToolType;
-    quantity: number;    
+    quantity: number;
+    junkQuantity: number;    
 }
 
 export interface IToolServiceData {
